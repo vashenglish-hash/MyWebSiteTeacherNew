@@ -1,239 +1,104 @@
-
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Индивидуальные занятия по английскому языку в Балашихе и онлайн. Подготовка к ОГЭ и ЕГЭ, разговорная практика для детей и взрослых. Пробный урок бесплатно!">
   <title>Ясный Английский со Светланой — легко, весело, с результатом ✨</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#FFF8E1;
+      --accent-orange:#FFB347;
+      --accent-blue:#4FC3F7;
+      --accent-green:#81C784;
+      --text-dark:#2E294E;
+      --card-bg:#FFFFFF;
+      --shadow:rgba(46,41,78,.1)
     }
-
-    :root {
-      --bg: #FFF8E1;
-      --accent-orange: #FFB347;
-      --accent-blue: #4FC3F7;
-      --accent-green: #81C784;
-      --text-dark: #2E294E;
-      --card-bg: #FFFFFF;
-      --shadow: rgba(46, 41, 78, 0.1);
+    body,html{
+      height:100%;
+      font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;
+      color:var(--text-dark);
+      background-color:var(--bg);
+      overflow-x:hidden
     }
-
-    body, html {
-      height: 100%;
-      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      color: var(--text-dark);
-      background-color: var(--bg);
-      overflow-x: hidden;
+    #mainCanvas{
+      position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2
     }
-
-    #mainCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
+    .content-wrapper{position:relative;z-index:1}
+    header{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:2rem;
+      background:radial-gradient(circle at top right,rgba(255,179,71,.08),transparent 40%),radial-gradient(circle at bottom left,rgba(79,195,247,.07),transparent 50%)
     }
-
-    .content-wrapper {
-      position: relative;
-      z-index: 1;
+    h1{
+      font-size:3.8rem;margin-bottom:1.5rem;
+      background:linear-gradient(90deg,var(--accent-orange),var(--accent-blue));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      font-weight:800;line-height:1.2;
+      opacity:0;transform:translateY(20px);
+      animation:fadeInUp 1s ease forwards .3s
     }
-
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-      background: radial-gradient(circle at top right, rgba(255, 179, 71, 0.08), transparent 40%),
-                  radial-gradient(circle at bottom left, rgba(79, 195, 247, 0.07), transparent 50%);
+    .tagline{
+      font-size:1.45rem;max-width:720px;margin-bottom:2.2rem;color:var(--text-dark);
+      opacity:0;transform:translateY(20px);
+      animation:fadeInUp 1s ease forwards .6s;line-height:1.5
     }
-
-    h1 {
-      font-size: 3.8rem;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      line-height: 1.2;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards 0.3s;
+    .btn{
+      background:linear-gradient(135deg,var(--accent-orange),var(--accent-green));
+      color:white;border:none;padding:16px 42px;font-size:1.25rem;font-weight:bold;
+      border-radius:60px;cursor:pointer;
+      box-shadow:0 6px 20px rgba(255,179,71,.3);
+      transition:all .35s ease;opacity:0;transform:translateY(20px);
+      animation:fadeInUp 1s ease forwards .9s;font-family:inherit
     }
-
-    .tagline {
-      font-size: 1.45rem;
-      max-width: 720px;
-      margin-bottom: 2.2rem;
-      color: var(--text-dark);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards 0.6s;
-      line-height: 1.5;
+    .btn:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 10px 25px rgba(255,179,71,.45)}
+    section{
+      padding:6rem 2rem;max-width:1100px;margin:0 auto;
+      opacity:0;transform:translateY(30px);
+      transition:opacity .8s ease,transform .8s ease
     }
-
-    .btn {
-      background: linear-gradient(135deg, var(--accent-orange), var(--accent-green));
-      color: white;
-      border: none;
-      padding: 16px 42px;
-      font-size: 1.25rem;
-      font-weight: bold;
-      border-radius: 60px;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(255, 179, 71, 0.3);
-      transition: all 0.35s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards 0.9s;
-      font-family: inherit;
+    section.visible{opacity:1;transform:translateY(0)}
+    h2{
+      text-align:center;font-size:2.6rem;margin-bottom:3.5rem;color:var(--text-dark);position:relative
     }
-
-    .btn:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 10px 25px rgba(255, 179, 71, 0.45);
+    h2:after{
+      content:'';display:block;width:80px;height:4px;
+      background:var(--accent-orange);margin:16px auto 0;border-radius:2px
     }
-
-    section {
-      padding: 6rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+    .programs-grid,.prices-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem
     }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .card{
+      background:var(--card-bg);padding:2.2rem;border-radius:20px;
+      box-shadow:0 10px 30px var(--shadow);text-align:center;
+      transition:transform .4s ease,box-shadow .4s ease;border-top:4px solid var(--accent-blue)
     }
-
-    h2 {
-      text-align: center;
-      font-size: 2.6rem;
-      margin-bottom: 3.5rem;
-      color: var(--text-dark);
-      position: relative;
+    .card:nth-child(2){border-top-color:var(--accent-orange)}
+    .card:nth-child(3){border-top-color:var(--accent-green)}
+    .card:hover{transform:translateY(-10px)}
+    .card h3{font-size:1.6rem;margin-bottom:1.2rem;color:var(--text-dark)}
+    .price{
+      font-size:2.1rem;font-weight:800;margin:1.2rem 0;
+      background:linear-gradient(90deg,var(--accent-orange),var(--accent-green));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent
     }
-
-    h2:after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--accent-orange);
-      margin: 16px auto 0;
-      border-radius: 2px;
+    footer{
+      text-align:center;padding:2.5rem;color:#5a5a5a;font-size:1rem;background:#faf9f5
     }
-
-    .programs-grid, .prices-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      padding: 2.2rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px var(--shadow);
-      text-align: center;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      border-top: 4px solid var(--accent-blue);
-    }
-
-    .card:nth-child(2) { border-top-color: var(--accent-orange); }
-    .card:nth-child(3) { border-top-color: var(--accent-green); }
-
-    .card:hover {
-      transform: translateY(-10px);
-    }
-
-    .card h3 {
-      font-size: 1.6rem;
-      margin-bottom: 1.2rem;
-      color: var(--text-dark);
-    }
-
-    .price {
-      font-size: 2.1rem;
-      font-weight: 800;
-      margin: 1.2rem 0;
-      background: linear-gradient(90deg, var(--accent-orange), var(--accent-green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    form {
-      display: grid;
-      gap: 1.4rem;
-      max-width: 550px;
-      margin: 0 auto;
-    }
-
-    input, textarea {
-      padding: 14px 18px;
-      font-size: 1.05rem;
-      border: 2px solid #e0e0e0;
-      border-radius: 14px;
-      font-family: inherit;
-      transition: border-color 0.3s;
-    }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 130px;
-    }
-
-    button[type="submit"] {
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
-      color: white;
-      font-weight: bold;
-      padding: 14px;
-      border: none;
-      border-radius: 14px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
-
-    button[type="submit"]:hover {
-      opacity: 0.92;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2.5rem;
-      color: #5a5a5a;
-      font-size: 1rem;
-      background: #faf9f5;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 2.7rem; }
-      .tagline { font-size: 1.2rem; }
-      section { padding: 4.5rem 1.5rem; }
-      h2 { font-size: 2.1rem; }
-      .card { padding: 1.8rem; }
+    @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+    @media (max-width:768px){
+      h1{font-size:2.7rem}
+      .tagline{font-size:1.2rem}
+      section{padding:4.5rem 1.5rem}
+      h2{font-size:2.1rem}
+      .card{padding:1.8rem}
     }
   </style>
 </head>
@@ -243,8 +108,8 @@
   <div class="content-wrapper">
     <header>
       <h1>Ясный Английский<br/>со Светланой</h1>
-      <p class="tagline">Индивидуальные занятия для детей и взрослых • Разговорная практика, грамматика, подготовка к экзаменам • Учим легко, с улыбкой и без стресса!</p>
-      <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+      <p class="tagline">Индивидуальные занятия для детей и взрослых • Подготовка к ОГЭ и ЕГЭ • Разговорная практика, грамматика, уверенность в языке • Учим легко и без стресса!</p>
+      <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
         🌟 Записаться на пробный урок
       </button>
     </header>
@@ -258,7 +123,7 @@
         </div>
         <div class="card">
           <h3>Подростки (13–17 лет)</h3>
-          <p>Подготовка к ОГЭ/ЕГЭ, разговорная практика, современные темы, поддержка в школе.</p>
+          <p><strong>Подготовка к ОГЭ и ЕГЭ</strong> — разбор формата, типичных ошибок, стратегии выполнения заданий. Плюс разговорная практика и поддержка в школьной программе.</p>
         </div>
         <div class="card">
           <h3>Взрослые</h3>
@@ -273,7 +138,7 @@
         <div class="card">
           <h3>Индивидуальное занятие</h3>
           <div class="price">1 500 ₽</div>
-          <p>60 минут • Онлайн или очно (м. Проспект Мира)</p>
+          <p>60 минут • Онлайн или очно (г. Балашиха)</p>
         </div>
         <div class="card">
           <h3>Пробный урок</h3>
@@ -290,73 +155,54 @@
 
     <section id="contact">
       <h2>Свяжитесь со мной</h2>
-      <form id="contactForm" onsubmit="handleSubmit(event)">
-        <input type="text" placeholder="Ваше имя *" required>
-        <input type="tel" placeholder="Телефон или WhatsApp *" required>
-        <textarea placeholder="Расскажите о целях, возрасте ученика и удобном времени"></textarea>
-        <button type="submit">Отправить заявку</button>
-      </form>
+      <p style="text-align:center;margin:1.5rem 0;font-size:1.1rem;">
+        Напишите мне на почту:
+      </p>
+      <div style="text-align:center">
+        <a href="mailto:eng-tutor@skovenya.ru?subject=Заявка на пробный урок&body=Здравствуйте, Светлана!%0D%0A%0D%0AМеня интересует:" 
+           style="display:inline-block;background:linear-gradient(135deg,var(--accent-blue),var(--accent-green));color:white;text-decoration:none;padding:14px 32px;border-radius:14px;font-weight:bold;font-size:1.1rem">
+          📧 eng-tutor@skovenya.ru
+        </a>
+      </div>
     </section>
 
     <footer>
-      <p>© 2025 Ясный Английский со Светланой • Все занятия проходят в дружелюбной атмосфере</p>
+      <p>© 2025 Ясный Английский со Светланой • Подготовка к ОГЭ и ЕГЭ • г. Балашиха</p>
     </footer>
   </div>
 
   <script>
-    // Canvas: мягкие цветные формы на заднем плане
-    const canvas = document.getElementById('mainCanvas');
-    const ctx = canvas.getContext('2d');
+    const canvas=document.getElementById('mainCanvas');
+    const ctx=canvas.getContext('2d');
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function resizeCanvas(){
+      canvas.width=window.innerWidth;
+      canvas.height=window.innerHeight;
       drawBackground();
     }
 
-    function drawBackground() {
-      const w = canvas.width;
-      const h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      ctx.globalAlpha = 0.06;
-      const colors = ['#FFB347', '#4FC3F7', '#81C784', '#FFECB3'];
-      
-      for (let i = 0; i < 18; i++) {
-        const x = Math.random() * w;
-        const y = Math.random() * h;
-        const r = 40 + Math.random() * 120;
-        ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fill();
+    function drawBackground(){
+      const w=canvas.width,h=canvas.height;
+      ctx.clearRect(0,0,w,h);
+      ctx.globalAlpha=0.06;
+      const colors=['#FFB347','#4FC3F7','#81C784','#FFECB3'];
+      for(let i=0;i<18;i++){
+        const x=Math.random()*w,y=Math.random()*h,r=40+Math.random()*120;
+        ctx.fillStyle=colors[Math.floor(Math.random()*colors.length)];
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
       }
-
-      ctx.globalAlpha = 1;
+      ctx.globalAlpha=1;
     }
 
-    // Анимация при прокрутке
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.1 });
+    },{threshold:0.1});
 
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
+    document.querySelectorAll('section').forEach(section=>observer.observe(section));
 
-    // Форма
-    function handleSubmit(e) {
-      e.preventDefault();
-      alert('Спасибо за заявку! Светлана свяжется с вами в течение дня.');
-      document.getElementById('contactForm').reset();
-    }
-
-    // Инициализация
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize',resizeCanvas);
     resizeCanvas();
   </script>
 </body>
