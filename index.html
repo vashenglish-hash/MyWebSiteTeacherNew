@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Индивидуальные занятия по английскому языку в Балашихе и онлайн. Подготовка к ОГЭ и ЕГЭ, разговорная практика для детей и взрослых. Пробный урок бесплатно!">
   
-  <!-- Favicon -->
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/263/263927.png" type="image/png">
+  <!-- Favicon: книга + параметр для обхода кэша -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3096/3096673.png?v=2" type="image/png">
   
   <title>Ясный Английский со Светланой — легко, весело, с результатом ✨</title>
   <style>
@@ -82,10 +82,11 @@
     .card{
       background:var(--card-bg);padding:2.2rem;border-radius:20px;
       box-shadow:0 10px 30px var(--shadow);text-align:center;
-      transition:transform .4s ease,box-shadow .4s ease;border-top:4px solid var(--accent-blue)
+      transition:transform .4s ease,box-shadow .4s ease;
+      border-top:4px solid var(--accent-blue)
     }
-    .card:nth-child(2){border-top-color:var(--accent-orange)}
-    .card:nth-child(3){border-top-color:var(--accent-green)}
+    .card--orange{border-top-color:var(--accent-orange)}
+    .card--green{border-top-color:var(--accent-green)}
     .card:hover{transform:translateY(-10px)}
     .card h3{font-size:1.6rem;margin-bottom:1.2rem;color:var(--text-dark)}
     .price{
@@ -125,11 +126,11 @@
           <h3>Для детей (6–12 лет)</h3>
           <p>Игровые методики, песни, мультики, простая грамматика. Развиваем интерес и уверенность в языке.</p>
         </div>
-        <div class="card">
+        <div class="card card--orange">
           <h3>Подростки (13–17 лет)</h3>
           <p><strong>Подготовка к ОГЭ и ЕГЭ</strong> — разбор формата, типичных ошибок, стратегии выполнения заданий. Плюс разговорная практика и поддержка в школьной программе.</p>
         </div>
-        <div class "card">
+        <div class="card card--green">
           <h3>Взрослые</h3>
           <p>Бытовой и деловой английский, путешествия, интервью, свободное общение. Начнём с любого уровня!</p>
         </div>
@@ -144,12 +145,12 @@
           <div class="price">1 500 ₽</div>
           <p>60 минут • Онлайн или очно (г. Балашиха)</p>
         </div>
-        <div class="card">
+        <div class="card card--orange">
           <h3>Пробный урок</h3>
           <div class="price">Бесплатно</div>
           <p>30 минут • Знакомство, диагностика уровня, план обучения</p>
         </div>
-        <div class="card">
+        <div class="card card--green">
           <h3>Абонемент (8 занятий)</h3>
           <div class="price">11 200 ₽</div>
           <p>Экономия 800 ₽ • Гибкое расписание</p>
@@ -163,7 +164,7 @@
         Напишите мне на почту:
       </p>
       <div style="text-align:center">
-        <a href="mailto:vashenglish@gmail.com?subject=Заявка на пробный урок&body=Здравствуйте, Светлана!%0D%0A%0D%0AМеня интересует:" 
+        <a href="mailto:vashenglish@gmail.com?subject=Заявка на пробный урок&body=Здравствуйте%2C%20Светлана!%0A%0AМеня%20интересует%3A" 
            style="display:inline-block;background:linear-gradient(135deg,var(--accent-blue),var(--accent-green));color:white;text-decoration:none;padding:14px 32px;border-radius:14px;font-weight:bold;font-size:1.1rem">
           📧 vashenglish@gmail.com
         </a>
